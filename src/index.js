@@ -2,6 +2,7 @@ document.getElementById('search-form').addEventListener('submit', function(event
     event.preventDefault();
     const query = event.target.searchQuery.value;
     if (query) {
+      clearGallery();
       searchImages(query);
     } else {
       Notiflix.Notify.warning('Please enter a search query.');
@@ -28,27 +29,32 @@ document.getElementById('search-form').addEventListener('submit', function(event
   
   function displayResults(images) {
     const gallery = document.getElementById('gallery');
-    gallery.innerHTML = '';
   
     images.forEach(image => {
-      const item = document.createElement('div');
-      item.classList.add('item');
+      const card = document.createElement('div');
+      card.classList.add('photo-card');
       
       const img = document.createElement('img');
       img.src = image.webformatURL;
       img.alt = image.tags;
+      img.loading = 'lazy';
   
       const info = document.createElement('div');
       info.classList.add('info');
       info.innerHTML = `
-        <p>Likes: ${image.likes}</p>
-        <p>Views: ${image.views}</p>
-        <p>Comments: ${image.comments}</p>
-        <p>Downloads: ${image.downloads}</p>
+        <p class="info-item"><b>Likes:</b> ${image.likes}</p>
+        <p class="info-item"><b>Views:</b> ${image.views}</p>
+        <p class="info-item"><b>Comments:</b> ${image.comments}</p>
+        <p class="info-item"><b>Downloads:</b> ${image.downloads}</p>
       `;
       
-      item.appendChild(img);
-      item.appendChild(info);
-      gallery.appendChild(item);
+      card.appendChild(img);
+      card.appendChild(info);
+      gallery.appendChild(card);
     });
+  }
+  
+  function clearGallery() {
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = '';
   }
