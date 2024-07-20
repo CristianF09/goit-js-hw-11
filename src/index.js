@@ -9,7 +9,6 @@ const PER_PAGE = 40;
 
 const searchForm = document.getElementById('search-form');
 const gallery = document.getElementById('gallery');
-const loadMoreBtn = document.querySelector('.load-more');
 
 let searchQuery = '';
 let page = 1;
@@ -21,7 +20,6 @@ searchForm.addEventListener('submit', async (e) => {
   searchQuery = e.currentTarget.elements.searchQuery.value.trim();
   page = 1;
   gallery.innerHTML = '';
-  loadMoreBtn.classList.add('hidden');
 
   if (searchQuery === '') {
     Notiflix.Notify.warning('Please enter a search query');
@@ -30,8 +28,6 @@ searchForm.addEventListener('submit', async (e) => {
 
   await fetchImages();
 });
-
-loadMoreBtn.addEventListener('click', fetchImages);
 
 async function fetchImages() {
   try {
@@ -52,18 +48,18 @@ async function fetchImages() {
 
     if (images.length === 0) {
       Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
-      loadMoreBtn.classList.add('hidden');
     } else {
       renderGallery(images);
       lightbox.refresh();
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
+
       if (page * PER_PAGE >= totalHits) {
-        loadMoreBtn.classList.add('hidden');
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
       } else {
-        loadMoreBtn.classList.remove('hidden');
         page += 1;
       }
+
+      smoothScroll();
     }
   } catch (error) {
     console.error('Error fetching images:', error);
@@ -97,3 +93,27 @@ function createImageCard(image) {
     </a>
   `;
 }
+
+function smoothScroll() {
+  const { height: cardHeight } = document
+    .querySelector(".gallery")
+    .firstElementChild.getBoundingClientRect();
+
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: "smooth",
+  });
+}
+
+// Infinite scrolling
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && searchQuery) {
+      fetchImages();
+    }
+  });
+}, {
+  rootMargin: '200px',
+});
+
+observer.observe(document.querySelector('.scroll-guard'));
