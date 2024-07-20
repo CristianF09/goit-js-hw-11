@@ -68,29 +68,27 @@ async function fetchImages() {
 }
 
 function renderGallery(images) {
-  const markup = images.map(image => createImageCard(image)).join('');
+  const markup = images.map(image => createPhotoCard(image)).join('');
   gallery.insertAdjacentHTML('beforeend', markup);
 }
 
-function createImageCard(image) {
+function createPhotoCard(data) {
+  const { webformatURL, largeImageURL, tags, likes, views, comments, downloads } = data;
+
   return `
-    <a href="${image.largeImageURL}" class="photo-card">
-      <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+    <div class="photo-card">
+      <a href="${largeImageURL}" class="lightbox">
+        <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+      </a>
       <div class="info">
-        <p class="info-item">
-          <b>Likes</b> ${image.likes}
-        </p>
-        <p class="info-item">
-          <b>Views</b> ${image.views}
-        </p>
-        <p class="info-item">
-          <b>Comments</b> ${image.comments}
-        </p>
-        <p class="info-item">
-          <b>Downloads</b> ${image.downloads}
-        </p>
+        <ul>
+          <li class="info-item"><b>Likes:</b> <span>${likes}</span></li>
+          <li class="info-item"><b>Views:</b> <span>${views}</span></li>
+          <li class="info-item"><b>Comments:</b> <span>${comments}</span></li>
+          <li class="info-item"><b>Downloads:</b> <span>${downloads}</span></li>
+        </ul>
       </div>
-    </a>
+    </div>
   `;
 }
 

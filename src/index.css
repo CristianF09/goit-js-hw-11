@@ -1,18 +1,12 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
   margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 20px;
 }
 
 header {
-  width: 100%;
-  padding: 20px;
-  background-color: #f8f8f8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .search-form {
@@ -21,62 +15,63 @@ header {
 }
 
 .search-form input {
-  width: 300px;
   padding: 10px;
-  margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-right: 10px;
 }
 
 .search-form button {
-  padding: 10px 20px;
+  padding: 10px 15px;
   border: none;
   background-color: #007bff;
-  color: #fff;
+  color: white;
   border-radius: 4px;
   cursor: pointer;
 }
 
+.search-form button:hover {
+  background-color: #0056b3;
+}
+
 .gallery {
-  margin-top: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
 }
 
 .photo-card {
-  max-width: 200px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background-color: #fff;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .photo-card img {
   width: 100%;
-  display: block;
+  height: auto;
 }
 
 .info {
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info ul {
+  list-style: none;
+  padding: 0;
 }
 
 .info-item {
-  margin: 5px 0;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.load-more {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #28a745;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.load-more.hidden {
-  display: none;
+.info-item b {
+  margin-right: 5px;
 }
