@@ -45,24 +45,38 @@ header {
   justify-content: center;
 }
 
-.gallery-item {
+.photo-card {
   max-width: 200px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  background-color: #fff;
+  text-align: center;
 }
 
-.gallery-item img {
+.photo-card img {
   width: 100%;
   display: block;
 }
 
 .info {
   padding: 10px;
-  background-color: #fff;
-  text-align: left;
 }
 
-.info p {
+.info-item {
   margin: 5px 0;
+}
+
+.load-more {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.load-more.hidden {
+  display: none;
 }
