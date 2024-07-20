@@ -7,7 +7,7 @@ const BASE_URL = 'https://pixabay.com/api/';
 const searchForm = document.getElementById('search-form');
 const gallery = document.getElementById('gallery');
 
-searchForm.addEventListener('submit', async e => {
+searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const searchQuery = e.currentTarget.elements.searchQuery.value.trim();
 
@@ -17,7 +17,7 @@ searchForm.addEventListener('submit', async e => {
   }
 
   try {
-    const response = await axios.get(`${BASE_URL}`, {
+    const response = await axios.get(BASE_URL, {
       params: {
         key: API_KEY,
         q: searchQuery,
@@ -30,7 +30,7 @@ searchForm.addEventListener('submit', async e => {
     const images = response.data.hits;
 
     if (images.length === 0) {
-      Notiflix.Notify.failure('No images found');
+      Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.');
     } else {
       renderGallery(images);
       Notiflix.Notify.success(`Found ${images.length} images`);
@@ -42,13 +42,15 @@ searchForm.addEventListener('submit', async e => {
 });
 
 function renderGallery(images) {
-  gallery.innerHTML = images
-    .map(
-      image => `
+  gallery.innerHTML = images.map(image => `
     <div class="gallery-item">
       <img src="${image.webformatURL}" alt="${image.tags}" />
+      <div class="info">
+        <p><strong>Likes:</strong> ${image.likes}</p>
+        <p><strong>Views:</strong> ${image.views}</p>
+        <p><strong>Comments:</strong> ${image.comments}</p>
+        <p><strong>Downloads:</strong> ${image.downloads}</p>
+      </div>
     </div>
-  `
-    )
-    .join('');
+  `).join('');
 }

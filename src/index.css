@@ -45,8 +45,24 @@ header {
   justify-content: center;
 }
 
-.gallery img {
+.gallery-item {
   max-width: 200px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+}
+
+.info {
+  padding: 10px;
+  background-color: #fff;
+  text-align: left;
+}
+
+.info p {
+  margin: 5px 0;
 }
