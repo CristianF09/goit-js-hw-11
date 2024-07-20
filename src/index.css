@@ -1,78 +1,52 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f0f0f0;
-  }
-  
-  header {
-    width: 100%;
-    background-color: #333;
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .search-form {
-    display: flex;
-  }
-  
-  .search-form input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-    border: none;
-    border-radius: 4px 0 0 4px;
-  }
-  
-  .search-form button {
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-  }
-  
-  .search-form button:hover {
-    background-color: #4cae4c;
-  }
-  
-  main {
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-  }
-  
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .photo-card {
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow: hidden;
-    background-color: white;
-    width: 200px;
-  }
-  
-  .photo-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  
-  .photo-card .info {
-    padding: 10px;
-  }
-  
-  .photo-card .info-item {
-    margin: 5px 0;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  width: 100%;
+  padding: 20px;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.search-form input {
+  width: 300px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.gallery {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.gallery img {
+  max-width: 200px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
